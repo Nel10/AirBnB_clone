@@ -3,10 +3,12 @@
 class FileStorage that serializes instances to a JSON
 file and deserializes JSON file to instances
 """
-from json import dump, load, dumps
+import json
 from models import base_model
+from os.path import exists
 
 BaseModel = base_model.BaseModel
+classes_name = ["BaseModel"]
 
 class FileStorage:
     """serializes instances to a JSON file and deserializes JSON file"""
@@ -32,4 +34,14 @@ class FileStorage:
 
     def reload(self):
         """deserializes the JSON file to __objects"""
-        if
+        dict_obje = {}
+        self.__objects = {}
+        if (exists(self.__file_path)):
+            with open(self.__file_path, 'r') as f:
+                dict_obje = load(f)
+                for key, value in dict_obje.items():
+                    class_n = key.split(".")[0]
+                    if class_n in classes_name:
+                        self.__objects[key] = eval(class_n)
+                    else:
+                        pass
