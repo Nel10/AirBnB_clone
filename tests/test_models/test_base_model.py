@@ -6,6 +6,7 @@ import models
 import pep8 as pycodestyle
 BaseModel = models.base_model.BaseModel
 
+
 class TestBaseModel(unittest.TestCase):
     """Test BaseModel"""
 
@@ -36,6 +37,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue(hasattr(basemodel, "name"))
         self.assertFalse(hasattr(basemodel, "updated_at"))
         self.assertTrue(hasattr(basemodel, "__class__"))
+
 
 if __name__ == "__main__":
     unittest.main()
