@@ -38,5 +38,6 @@ class FileStorage:
                 for key, valu in (json.load(f)).items():
                     valu = eval(valu["__class__"])(**valu)
                     self.__objects[key] = valu
+
         except FileNotFoundError:
             pass
