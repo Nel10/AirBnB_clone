@@ -2,6 +2,7 @@
 """Test BaseModel"""
 import unittest
 import datetime
+import os
 from models.base_model import BaseModel
 import pep8 as pycodestyle
 
@@ -54,3 +55,15 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(basemodel2, BaseModel)
         self.assertIsInstance(json_attr, dict)
         self.assertIsNot(self.basemodel, basemodel2)
+
+    def test_json_file(self):
+        """check file json"""
+        try:
+            os.remove("file.json")
+        except FileNotFoundError:
+            pass
+        self.basemodel.save()
+        key = "BaseModel." + self.basemodel.id
+        with open("file.json", 'r') as f:
+            json = f.read()
+        self.assertTrue(key in json)
