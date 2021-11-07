@@ -14,17 +14,20 @@ class FileStorage:
     __objects = {}
 
     def all(self):
-        """returns the dict __objects"""
+        """returns the dict __objects
+        """
         return self.__objects
 
     def new(self, obj):
-        """sets in __objects the obj with key <obj class name>.id"""
+        """sets in __objects the obj with key <obj class name>.id
+        """
         if obj is not None:
             key = "{}.{}".format(obj.__class__.__name__, obj.id)
             self.__objects[key] = obj
 
     def save(self):
-        """serializes __objects to the JSON file (path: __file_path)"""
+        """serializes __objects to the JSON file (path: __file_path)
+        """
         dict_json_object = {}
         with open(self.__file_path, 'w') as f:
             if self.__objects is not None:
@@ -33,7 +36,8 @@ class FileStorage:
             json.dump(dict_json_object, f)
 
     def reload(self):
-        """deserializes the JSON file to __objects"""
+        """deserializes the JSON file to __objects
+        """
         try:
             with open(self.__file_path, mode='r') as f:
                 for key, valu in (json.load(f)).items():
