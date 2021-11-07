@@ -1,43 +1,56 @@
 #!/usr/bin/python3
 """Test BaseModel"""
 import unittest
-from datetime import datetime
-import models
+import datetime
+from models.base_model import BaseModel
 import pep8 as pycodestyle
-BaseModel = models.base_model.BaseModel
 
 
 class TestBaseModel(unittest.TestCase):
     """Test BaseModel"""
 
-    def setUpClass(self):
-        """set up class"""
-        self.test_basemodel = BaseModel()
-
-    def test_pep8_BaseModel(self):
-        """test with PEP8"""
-        pycstyle = pep8.StyleGuide(quiet=True)
-        style = pycstyle.check_file(['models/base_model.py'])
-        self.assertEqual(style.total_errors, 0, "Check pep8")
-
-    def test_save_BaseModel(self):
-        """test save """
-        self.base.save()
-        self.assertNotEqual(self.base.created_at, self.base.updated_at)
+    def setUp(self):
+        """set up"""
+        self.basemodel = BaseModel()
 
     def test_docstring(self):
-        """test docstring"""
-        self.assertisNotNone(BaseModel.__doc__)
+        """check module docstring"""
+        self.assertTrue(len(self.basemodel.__doc__) > 0)
+
+    def test_created_at(self):
+        """test created_at"""
+        BaseModel_to_dict = self.basemodel.to_dict()
+        model = BaseModel(BaseModel_to_dict)
+        self.assertTrue(isinstance(model.created_at, datetime.datetime))
+
+    def test_updated_at(self):
+        """test updated_at"""
+        BaseModel_to_dict = self.basemodel.to_dict()
+        model = BaseModel(BaseModel_to_dict)
+        self.assertTrue(isinstance(model.updated_at, datetime.datetime))
+
+    def test_id(self):
+        """checks id"""
+        self.assertEqual("<class 'str'>", str(type(self.basemodel.id)))
+
+    def test_save(self):
+        """test save"""
+        updated = self.basemodel.updated_at
+        self.basemodel.save()
+        updated2 = self.basemodel.updated_at
+        self.assertNotEqual(updated, updated2)
+
+    def test_args(self):
+        """check for args"""
+        ele = BaseModel("element")
+        self.assertNotIn("element", ele.__dict__.values())
 
     def test_kwargs(self):
-        basemodel = BaseModel(name="base")
-        self.assertEqual(type(basemodel).__name__, "BaseModel")
-        self.assertFalse(hasattr(basemodel, "id"))
-        self.assertFalse(hasattr(basemodel, "created_at"))
-        self.assertTrue(hasattr(basemodel, "name"))
-        self.assertFalse(hasattr(basemodel, "updated_at"))
-        self.assertTrue(hasattr(basemodel, "__class__"))
-
-
-if __name__ == "__main__":
-    unittest.main()
+        """check for kwargs"""
+        self.basemodel.name = "Holberton"
+        self.basemodel.my_number = 89
+        json_attr = self.basemodel.to_dict()
+        basemodel2 = BaseModel(**json_attr)
+        self.assertIsInstance(basemodel2, BaseModel)
+        self.assertIsInstance(json_attr, dict)
+        self.assertIsNot(self.basemodel, basemodel2)
