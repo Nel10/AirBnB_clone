@@ -2,7 +2,6 @@
 """
 Class base
 """
-
 from datetime import datetime
 import models
 import uuid
