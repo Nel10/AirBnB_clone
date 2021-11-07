@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """Test BaseModel"""
 import unittest
-import os
-from models.base_model import BaseModel
-import pep8
-
+from datetime import datetime
+import models
+import pep8 as pycodestyle
+BaseModel = models.base_model.BaseModel
 
 class TestBaseModel(unittest.TestCase):
     """Test BaseModel"""
