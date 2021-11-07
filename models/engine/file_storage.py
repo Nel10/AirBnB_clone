@@ -3,12 +3,11 @@
 class FileStorage that serializes instances to a JSON
 file and deserializes JSON file to instances
 """
-import json
-from models import base_model
+from json import load, dump, dumps
+from models.base_model import BaseModel
 from os.path import exists
 
-BaseModel = base_model.BaseModel
-classes_name = ["BaseModel"]
+classes_name = ["BaseModel": BaseModel]
 
 class FileStorage:
     """serializes instances to a JSON file and deserializes JSON file"""
@@ -21,8 +20,9 @@ class FileStorage:
 
     def new(self, obj):
         """sets in __objects the obj with key <obj class name>.id"""
-        key = "{}.{}".format(obj.__class__.__name__, obj.id)
-        self.__objects[key] = obj
+        if obj is not None:
+            key = "{}.{}".format(obj.__class__.__name__, obj.id)
+            self.__objects[key] = obj
 
     def save(self):
         """serializes __objects to the JSON file (path: __file_path)"""

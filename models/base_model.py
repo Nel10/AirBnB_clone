@@ -6,7 +6,8 @@ Class base
 from datetime import datetime
 import models
 import uuid
-ft_dt = "%Y-%m-%dT%H:%M:%S.%f"
+
+ftim = "%Y-%m-%dT%H:%M:%S.%f"
 
 
 class BaseModel:
@@ -15,14 +16,17 @@ class BaseModel:
         """initialization of the class"""
         if kwargs:
             for key, value in kwargs.items():
-                if key in ['created_at', 'updated_at']:
-                    value = datetime.strptime(value, ft_dt)
-                if key not in ['__class__']:
+                if key != '__class__':
                     setattr(self, key, value)
+            if hasattr(self, "created_at") and type(self.created_at) is str:
+                self.created_at = datetime.strptime(kwargs["created_at"], ftim)
+            if hasattr(self, "updated_at") and type(self.updated_at) is str:
+                self.updated_at = datetime.strptime(kwargs["updated_at"], ftim)
         else:
             self.id = str(uuid.uuid4())
             self.created_at = self.updated_at = datetime.now()
             models.storage.new(self)
+            models.storage.save()
 
     def __str__(self):
         """string representation"""
@@ -36,12 +40,10 @@ class BaseModel:
 
     def to_dict(self):
         """returns the contents of the dict"""
-        dic_t = {}
-        for key, item in self.__dict__.items():
-            if key in ['created_at', 'updated_at']:
-                dic_t[key] = item
-
-        dic_t['__class__'] = self.__class__.__name__
-        dic_t['created_at'] = self.created_at.isoformat()
-        dic_t['updated_at'] = self.updated_at.isoformat()
+        dic_t = self.__dict__.copy()
+        if "created_at" in dic_t:
+            dic_t["created_at"] = dic_t["created_at"].strftime(time)
+        if "updated_at" in dic_t:
+            dic_t["updated_at"] = dic_t["updated_at"].strftime(time)
+        dic_t["__class__"] = self.__class__.__name__
         return dic_t
