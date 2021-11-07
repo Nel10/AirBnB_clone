@@ -25,8 +25,6 @@ class BaseModel:
         else:
             self.id = str(uuid.uuid4())
             self.created_at = self.updated_at = datetime.now()
-            models.storage.new(self)
-            models.storage.save()
 
     def __str__(self):
         """string representation"""
@@ -36,14 +34,11 @@ class BaseModel:
     def save(self):
         """update the current date"""
         self.updated_at = datetime.now()
-        models.storage.save()
 
     def to_dict(self):
         """returns the contents of the dict"""
         dic_t = self.__dict__.copy()
-        if "created_at" in dic_t:
-            dic_t["created_at"] = dic_t["created_at"].strftime(time)
-        if "updated_at" in dic_t:
-            dic_t["updated_at"] = dic_t["updated_at"].strftime(time)
         dic_t["__class__"] = self.__class__.__name__
+        dic_t["created_at"] = self.created_at.isoformat()
+        dic_t["updated_at"] = self.updated_at.isoformat()
         return dic_t
