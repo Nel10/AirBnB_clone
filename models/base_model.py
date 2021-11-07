@@ -25,6 +25,7 @@ class BaseModel:
         else:
             self.id = str(uuid.uuid4())
             self.created_at = self.updated_at = datetime.now()
+            self.storage.new(self)
 
     def __str__(self):
         """string representation"""
@@ -34,6 +35,7 @@ class BaseModel:
     def save(self):
         """update the current date"""
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """returns the contents of the dict"""
