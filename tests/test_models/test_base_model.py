@@ -4,7 +4,7 @@ import unittest
 import datetime
 import os
 from models.base_model import BaseModel
-import pep8 as pycodestyle
+import pep8
 
 
 class TestBaseModel(unittest.TestCase):
@@ -67,3 +67,16 @@ class TestBaseModel(unittest.TestCase):
         with open("file.json", 'r') as f:
             json = f.read()
         self.assertTrue(key in json)
+
+    def test_is_an_instance(self):
+        """check if is an instance"""
+        self.assertIsInstance(self.basemodel, BaseModel)
+
+    def test_check_id(self):
+        """check id are different"""
+        basemodel2 = BaseModel()
+        self.assertNotEqual(self.basemodel.id, basemodel2.id)
+
+    def test_dict_clss(self):
+        """check class"""
+        self.assertEqual("BaseModel", (self.basemodel.to_dict())["__class__"])
