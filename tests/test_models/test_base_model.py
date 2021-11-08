@@ -14,6 +14,12 @@ class TestBaseModel(unittest.TestCase):
         """set up"""
         self.basemodel = BaseModel()
 
+    def test_pep8(self):
+        """test for check pep8"""
+        style = pep8.StyleGuide(quiet=True)
+        syntax = style.check_files(['models/base_model.py'])
+        self.assertEqual(syntax.total_errors, 0, "check pep8")
+
     def test_docstring(self):
         """check module docstring"""
         self.assertTrue(len(self.basemodel.__doc__) > 0)
