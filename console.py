@@ -5,9 +5,10 @@ import datetime
 import json
 import models
 from models.base_model import BaseModel
+from models.user import User
 import shlex
 
-class_name = {'BaseModel': BaseModel}
+class_name = {'BaseModel': BaseModel, 'User': User}
 
 
 class HBNBCommand(cmd.Cmd):
