@@ -14,3 +14,20 @@ In this project the console will be a single-use function. A command line interf
 - Update attributes of an object
 - Destroy an object
 
+------
+
+**Clone Repository:**
+
+To clone this repository, perform the following steps
+
+*valid on Linux/UNIX operating systems*
+
+1. Open terminal
+2. Clone the repository using HTTP or SHH.
+3. Go to the directory where the files are located.
+4. Run the main program file ./console.py
+
+------
+
+REMEMBER: *This is only the first part of the project*.
+
