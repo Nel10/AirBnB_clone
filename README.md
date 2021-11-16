@@ -1,6 +1,6 @@
 # 0x00. AirBnB clone - The console
 
-![img](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOU5BHMTQX4%2F20211106%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20211106T205735Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=c13664ac5c74553f9fa850870688c2101559e78a2affd2ea80129140ca1366d8)
+![img](/home/alomia/Escritorio/Proyectos/Holberton School/AirBnB_clone/img/hbnb.png)
 
 ## Welcome to the AirBnB clone project!
 
