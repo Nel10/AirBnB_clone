@@ -1,6 +1,6 @@
 # 0x00. AirBnB clone - The console
 
-![img](/home/alomia/Escritorio/Proyectos/Holberton School/AirBnB_clone/img/hbnb.png)
+![img](img/hbnb.png)
 
 ## Welcome to the AirBnB clone project!
 
