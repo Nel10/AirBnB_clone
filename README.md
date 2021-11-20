@@ -1,6 +1,6 @@
 # 0x00. AirBnB clone - The console
 
-![img](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOU5BHMTQX4%2F20211106%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20211106T205735Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=c13664ac5c74553f9fa850870688c2101559e78a2affd2ea80129140ca1366d8)
+![img](img/hbnb.png)
 
 ## Welcome to the AirBnB clone project!
 
@@ -13,4 +13,21 @@ In this project the console will be a single-use function. A command line interf
 - Do operations on objects (count, compute stats, etc…)
 - Update attributes of an object
 - Destroy an object
+
+------
+
+**Clone Repository:**
+
+To clone this repository, perform the following steps
+
+*valid on Linux/UNIX operating systems*
+
+1. Open terminal
+2. Clone the repository using HTTP or SHH.
+3. Go to the directory where the files are located.
+4. Run the main program file ./console.py
+
+------
+
+REMEMBER: *This is only the first part of the project*.
 
