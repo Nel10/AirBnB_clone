@@ -78,6 +78,7 @@ button:hover {
     position: absolute;
     list-style: none;
     height: 100px;
+    padding-top: 20px;
 }
 .popover li {
     list-style: none;
